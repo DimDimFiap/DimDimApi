@@ -1,4 +1,9 @@
 package br.com.dimdim.repository;
 
-public interface TransactionTypeRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import br.com.dimdim.entity.TransactionType;
+
+
+public interface TransactionTypeRepository extends JpaRepository<TransactionType, Integer>{
+
 }
