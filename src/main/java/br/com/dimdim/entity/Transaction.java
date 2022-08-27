@@ -16,17 +16,29 @@ public class Transaction {
     @Column(name = "vl_transaction", nullable = false, scale = 2, length = 10)
     private Double value;
 
-    @OneToOne
-    @JoinColumn(name = "cd_type", referencedColumnName = "cd_type")
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "cd_type")
     private TransactionType transactionType;
 
     public Transaction() {
+    }
+
+    public Transaction(String title, Double value) {
+        this.title = title;
+        this.value = value;
     }
 
     public Transaction(Integer id, String title, Double value) {
         this.id = id;
         this.title = title;
         this.value = value;
+    }
+
+    public Transaction(Integer id, String title, Double value, TransactionType transactionType) {
+        this.id = id;
+        this.title = title;
+        this.value = value;
+        this.transactionType = transactionType;
     }
 
     public Integer getId() {
@@ -51,5 +63,23 @@ public class Transaction {
 
     public void setValue(Double value) {
         this.value = value;
+    }
+
+    public TransactionType getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(TransactionType transactionType) {
+        this.transactionType = transactionType;
+    }
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", value=" + value +
+                ", transactionType=" + transactionType +
+                '}';
     }
 }
