@@ -1,6 +1,9 @@
 package br.com.dimdim.dto;
 
-public record ResultObject(
+import br.com.dimdim.entity.Transaction;
+import org.springframework.data.domain.Page;
+
+public record ResultObject (
         Object result,
         boolean hasError,
         String msg
